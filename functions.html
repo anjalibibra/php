@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions in PHP</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Functions in PHP</h1>
+    </header>
+
+    <section id="functions">
+        <h2>Understanding Functions in PHP</h2>
+        <p>
+            Functions are reusable blocks of code designed to perform a specific task. They help to reduce redundancy, improve code organization, and enhance readability. Functions can accept parameters and return values, allowing for flexible and dynamic behavior in PHP applications.
+        </p>
+
+        <h3>1. Defining a Function</h3>
+        <p>
+            A function in PHP is defined using the <code>function</code> keyword, followed by a name, parentheses for parameters, and curly braces containing the code to execute.
+        </p>
+        <pre>
+&lt;?php
+function sayHello() {
+    echo "Hello, World!";
+}
+?&gt;
+        </pre>
+
+        <h3>2. Calling a Function</h3>
+        <p>
+            After defining a function, you can call it by its name followed by parentheses. Here's how to call the <code>sayHello</code> function:
+        </p>
+        <pre>
+&lt;?php
+function sayHello() {
+    echo "Hello, World!";
+}
+
+sayHello(); // Calling the function
+?&gt;
+        </pre>
+
+        <h3>3. Function Parameters</h3>
+        <p>
+            Functions can accept parameters, allowing you to pass values into them. Here’s an example of a function with parameters:
+        </p>
+        <pre>
+&lt;?php
+function greet($name) {
+    echo "Hello, $name!";
+}
+
+greet("Alice"); // Outputs: Hello, Alice!
+?&gt;
+        </pre>
+
+        <h3>4. Returning Values from Functions</h3>
+        <p>
+            Functions can also return values using the <code>return</code> statement. This allows you to send data back to the part of the code that called the function.
+        </p>
+        <pre>
+&lt;?php
+function add($a, $b) {
+    return $a + $b;
+}
+
+$result = add(5, 3); // $result is 8
+echo "The sum is: $result";
+?&gt;
+        </pre>
+
+        <h3>5. Default Parameters</h3>
+        <p>
+            You can specify default values for parameters. If a parameter is not provided, the default value is used.
+        </p>
+        <pre>
+&lt;?php
+function greet($name = "Guest") {
+    echo "Hello, $name!";
+}
+
+greet(); // Outputs: Hello, Guest!
+greet("Bob"); // Outputs: Hello, Bob!
+?&gt;
+        </pre>
+
+        <h3>6. Variable Scope</h3>
+        <p>
+            Variables defined outside a function cannot be accessed inside the function unless they are passed as parameters. However, you can use the <code>global</code> keyword to access a global variable inside a function.
+        </p>
+        <pre>
+&lt;?php
+$message = "Hello, World!";
+
+function showMessage() {
+    global $message;
+    echo $message;
+}
+
+showMessage(); // Outputs: Hello, World!
+?&gt;
+        </pre>
+
+        <h3>7. Variable Functions</h3>
+        <p>
+            PHP allows you to use a variable to hold the name of a function, enabling dynamic function calls.
+        </p>
+        <pre>
+&lt;?php
+function sayGoodbye() {
+    echo "Goodbye!";
+}
+
+$functionName = "sayGoodbye";
+$functionName(); // Calls the sayGoodbye function
+?&gt;
+        </pre>
+
+        <h3>8. Anonymous Functions</h3>
+        <p>
+            Anonymous functions, also known as closures, are functions without a specified name. They can be assigned to variables and passed as arguments to other functions.
+        </p>
+        <pre>
+&lt;?php
+$greet = function($name) {
+    echo "Hello, $name!";
+};
+
+$greet("Charlie"); // Outputs: Hello, Charlie!
+?&gt;
+        </pre>
+
+        <h3>9. Recursion</h3>
+        <p>
+            A recursive function is a function that calls itself. Recursion can be used to solve problems that can be broken down into smaller sub-problems.
+        </p>
+        <pre>
+&lt;?php
+function factorial($n) {
+    if ($n $gt;= 1) {
+        return 1;
+    } else {
+        return $n * factorial($n - 1);
+    }
+}
+
+echo "Factorial of 5 is: " . factorial(5); // Outputs: Factorial of 5 is: 120
+?&gt;
+        </pre>
+
+        <h3>10. PHP Built-in Functions</h3>
+        <p>
+            PHP comes with a rich set of built-in functions that can be used for various tasks, such as string manipulation, array handling, and mathematical calculations.
+        </p>
+        <pre>
+&lt;?php
+// Example of built-in functions
+$numbers = array(1, 2, 3, 4, 5);
+$sum = array_sum($numbers); // Returns the sum of elements in the array
+echo "The sum of the array is: $sum"; // Outputs: The sum of the array is: 15
+?&gt;
+        </pre>
+
+        <h3>Conclusion</h3>
+        <p>
+            Understanding functions is essential for creating modular, maintainable, and reusable code in PHP. Functions allow you to encapsulate logic and create code that is easy to read and manage.
+        </p>
+    </section>
+
+</body>
+</html>

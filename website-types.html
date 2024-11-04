@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Web Servers and Website Types</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Understanding Web Servers and Website Types</h1>
+    </header>
+
+    <section id="introduction">
+        <h2>Introduction to Web Servers</h2>
+        <p>
+            A web server is software and hardware that processes requests via HTTP/HTTPS, serving web pages to users. This document explores web servers, WAMP, XAMPP, and configuring PHP environments, as well as the different types of websites.
+        </p>
+    </section>
+
+    <section id="web-server-basics">
+        <h2>Basics of Web Servers</h2>
+        <p>
+            Web servers like Apache and Nginx process HTTP requests and return resources like HTML, CSS, JavaScript, and images. They can run locally for testing or remotely for public access.
+        </p>
+    </section>
+
+    <section id="wamp-installation">
+        <h2>Installing WAMP and Configuring PHP Environment</h2>
+        <p>
+            WAMP (Windows, Apache, MySQL, PHP) enables local PHP development on Windows. Download, install, and modify the php.ini file to configure settings in WAMP.
+        </p>
+    </section>
+
+    <section id="xampp-installation">
+        <h2>Installing XAMPP and Configuring PHP Environment</h2>
+        <p>
+            XAMPP (Cross-Platform, Apache, MySQL, PHP, and Perl) is a local server solution for Windows, macOS, and Linux. Follow these steps to install and configure PHP in XAMPP.
+        </p>
+    </section>
+
+    <section id="website-types">
+        <h2>Website Types: Static vs. Dynamic Websites</h2>
+        <p>
+            Websites are generally classified as either static or dynamic, depending on how they are built and how they function.
+        </p>
+
+        <h3>Static Websites</h3>
+        <p>
+            <strong>Static websites</strong> consist of pre-built HTML files that remain constant unless manually updated by a developer. Each page of a static website is a separate HTML file with fixed content.
+        </p>
+        <p>
+            <strong>Characteristics of Static Websites:</strong>
+            <ul>
+                <li>Fixed content that does not change for different users.</li>
+                <li>Built with HTML, CSS, and sometimes JavaScript.</li>
+                <li>No server-side scripting or databases involved.</li>
+                <li>Typically faster loading times due to simplicity.</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Advantages of Static Websites:</strong>
+            <ul>
+                <li>Simple and quick to develop and deploy.</li>
+                <li>Highly secure as there’s no interaction with databases or server-side scripting.</li>
+                <li>Low cost in terms of hosting and maintenance.</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Drawbacks of Static Websites:</strong>
+            <ul>
+                <li>Limited interactivity and functionality.</li>
+                <li>Requires manual updates for any content changes.</li>
+                <li>Less scalable as the site grows and more updates are needed.</li>
+            </ul>
+        </p>
+
+        <h3>Dynamic Websites</h3>
+        <p>
+            <strong>Dynamic websites</strong> are more complex and use server-side scripting (e.g., PHP, Python, Node.js) to generate content dynamically based on user interactions or data from databases. Examples include e-commerce sites, social media platforms, and content management systems (CMS) like WordPress.
+        </p>
+        <p>
+            <strong>Characteristics of Dynamic Websites:</strong>
+            <ul>
+                <li>Content is generated on the fly based on user interactions or database content.</li>
+                <li>Uses server-side languages (e.g., PHP) and databases (e.g., MySQL).</li>
+                <li>Personalized content for different users.</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Advantages of Dynamic Websites:</strong>
+            <ul>
+                <li>Easy content updates via a CMS without developer intervention.</li>
+                <li>Highly interactive and engaging for users.</li>
+                <li>Scalable with large databases and complex features.</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Drawbacks of Dynamic Websites:</strong>
+            <ul>
+                <li>More complex and time-consuming to develop.</li>
+                <li>Requires more resources to maintain, with higher hosting costs.</li>
+                <li>Potentially vulnerable to security risks due to server-side scripts and databases.</li>
+            </ul>
+        </p>
+
+        <h3>Examples of Static vs. Dynamic Websites</h3>
+        <p>
+            <strong>Static Website Example:</strong> A portfolio site with HTML and CSS.
+        </p>
+        <pre>
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;Portfolio&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;h1&gt;John Doe's Portfolio&lt;/h1&gt;
+                &lt;p&gt;Welcome to my personal website.&lt;/p&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+        </pre>
+        <p>
+            <strong>Dynamic Website Example:</strong> A PHP-based blog site that displays posts stored in a database.
+        </p>
+        <pre>
+            &lt;?php
+            // Connect to database and fetch posts
+            $conn = new mysqli("localhost", "username", "password", "database");
+            $result = $conn-&gt;query("SELECT title, content FROM posts");
+
+            while ($row = $result-&gt;fetch_assoc()) {
+                echo "&lt;h2&gt;" . $row["title"] . "&lt;/h2&gt;";
+                echo "&lt;p&gt;" . $row["content"] . "&lt;/p&gt;";
+            }
+            ?&gt;
+        </pre>
+    </section>
+
+    <section id="embedding-php">
+        <h2>Embedding PHP Code in Web Pages</h2>
+        <p>
+            PHP can be embedded within HTML to create dynamic content. Here’s a simple example:
+        </p>
+        <pre>
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            &lt;body&gt;
+
+            &lt;h1&gt;My First PHP Page&lt;/h1&gt;
+
+            &lt;?php
+            echo "Hello, World!";
+            ?&gt;
+
+            &lt;/body&gt;
+            &lt;/html&gt;
+        </pre>
+    </section>
+
+   
+</body>
+</html>

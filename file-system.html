@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working with File System in PHP</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Working with the File System in PHP</h1>
+    </header>
+
+    <section id="filesystem">
+        <h2>Introduction to PHP File System Operations</h2>
+        <p>
+            PHP provides a wide range of functions to interact with the file system. You can read, write, edit, delete files, and manage directories. Understanding how to work with files and directories is crucial for applications that handle user-generated content or need to store information persistently.
+        </p>
+
+        <h3>1. Understanding PHP File Permissions</h3>
+        <p>
+            When working with files, it’s important to ensure that the correct permissions are set. Common permissions include:
+        </p>
+        <ul>
+            <li><strong>Read (r):</strong> Allows reading the file’s contents.</li>
+            <li><strong>Write (w):</strong> Allows modifying the file.</li>
+            <li><strong>Execute (x):</strong> Allows executing the file if it’s a script or program.</li>
+        </ul>
+
+        <h4>Example: Checking File Permissions</h4>
+        php
+        &lt;?php
+        $file = "example.txt";
+
+        if (is_readable($file)) {
+            echo "File is readable.";
+        } else {
+            echo "File is not readable.";
+        }
+
+        if (is_writable($file)) {
+            echo "File is writable.";
+        } else {
+            echo "File is not writable.";
+        }
+        ?&gt;
+        
+
+        <h3>2. Opening and Closing Files</h3>
+        <p>
+            The <code>fopen()</code> function is used to open a file, and <code>fclose()</code> is used to close it. Files can be opened in different modes, such as read-only (<code>r</code>), write (<code>w</code>), append (<code>a</code>), and others.
+        </p>
+
+        <h4>Example: Opening and Closing a File</h4>
+        php
+        &lt;?php
+        $file = fopen("example.txt", "r"); // Open file in read-only mode
+        if ($file) {
+            echo "File opened successfully!";
+            fclose($file);
+        } else {
+            echo "Error opening file!";
+        }
+        ?&gt;
+        
+
+        <h3>3. Reading from a File</h3>
+        <p>
+            PHP provides several ways to read file contents, including <code>fread()</code>, <code>fgets()</code>, and <code>file_get_contents()</code>.
+        </p>
+
+        <h4>Example: Reading a File Line by Line</h4>
+        php
+        &lt;?php
+        $file = fopen("example.txt", "r");
+
+        if ($file) {
+            while (($line = fgets($file)) !== false) {
+                echo $line . "&lt;br&gt;";
+            }
+            fclose($file);
+        } else {
+            echo "Unable to open file.";
+        }
+        ?&gt;
+        
+
+        <h4>Example: Reading the Entire File</h4>
+        php
+        &lt;?php
+        $contents = file_get_contents("example.txt");
+        echo nl2br($contents);
+        ?&gt;
+        
+
+        <h3>4. Writing to a File</h3>
+        <p>
+            Use <code>fwrite()</code> or <code>file_put_contents()</code> to write data to a file.
+        </p>
+
+        <h4>Example: Writing to a File</h4>
+        php
+        &lt;?php
+        $file = fopen("example.txt", "w"); // Open in write mode
+
+        if ($file) {
+            fwrite($file, "Hello, world!\n");
+            fwrite($file, "This is a new line.\n");
+            fclose($file);
+            echo "Data written successfully.";
+        } else {
+            echo "Unable to write to file.";
+        }
+        ?&gt;
+        
+
+        <h4>Example: Appending Data to a File</h4>
+        php
+        &lt;?php
+        $file = fopen("example.txt", "a"); // Open in append mode
+
+        if ($file) {
+            fwrite($file, "Appending new data.\n");
+            fclose($file);
+            echo "Data appended successfully.";
+        } else {
+            echo "Unable to append to file.";
+        }
+        ?&gt;
+        
+
+        <h3>5. Deleting a File</h3>
+        <p>
+            The <code>unlink()</code> function is used to delete files in PHP.
+        </p>
+
+        <h4>Example: Deleting a File</h4>
+        php
+        &lt;?php
+        $file = "example.txt";
+
+        if (unlink($file)) {
+            echo "File deleted successfully.";
+        } else {
+            echo "Error deleting file.";
+        }
+        ?&gt;
+        
+
+        <h3>6. Working with Directories</h3>
+        <p>
+            PHP also provides functions for directory management, such as creating, reading, and deleting directories.
+        </p>
+
+        <h4>Example: Creating a Directory</h4>
+        php
+        &lt;?php
+        $dir = "new_directory";
+
+        if (!is_dir($dir)) {
+            mkdir($dir);
+            echo "Directory created successfully.";
+        } else {
+            echo "Directory already exists.";
+        }
+        ?&gt;
+        
+
+        <h4>Example: Reading a Directory</h4>
+        <p>You can use <code>opendir()</code>, <code>readdir()</code>, and <code>closedir()</code> to list files in a directory.</p>
+        php
+        &lt;?php
+        $dir = "my_directory";
+
+        if (is_dir($dir)) {
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    echo "File: " . $file . "&lt;br&gt;";
+                }
+                closedir($dh);
+            }
+        } else {
+            echo "Directory does not exist.";
+        }
+        ?&gt;
+        
+
+        <h4>Example: Deleting a Directory</h4>
+        php
+        &lt;?php
+        $dir = "old_directory";
+
+        if (rmdir($dir)) {
+            echo "Directory deleted successfully.";
+        } else {
+            echo "Error deleting directory. Make sure it’s empty.";
+        }
+        ?&gt;
+        
+
+        <h3>7. Practical Example: Logging User Actions to a File</h3>
+        <p>Here's a simple example of logging user actions to a file named <code>log.txt</code>.</p>
+
+        <h4>Log User Actions</h4>
+        php
+        &lt;?php
+        $logFile = "log.txt";
+        $action = "User logged in at " . date("Y-m-d H:i:s") . "\n";
+
+        file_put_contents($logFile, $action, FILE_APPEND);
+        echo "Action logged.";
+        ?&gt;
+        
+
+        <h3>8. Summary</h3>
+        <p>
+            PHP's file system functions provide powerful tools for managing files and directories. By using these tools, you can implement file-based storage, logging, and content management features in your applications.
+        </p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Basics</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>PHP Basics</h1>
+    </header>
+
+    <section id="introduction">
+        <h2>Introduction to PHP Basics</h2>
+        <p>
+            PHP (Hypertext Preprocessor) is a widely-used open-source scripting language designed for web development. PHP scripts run on the server, making it a server-side language. PHP is known for its ease of integration with HTML and is primarily used to build dynamic and interactive web applications. In this section, we’ll cover the core concepts and syntax fundamentals of PHP, including tokens, variables, constants, data types, operators, control structures, and more.
+        </p>
+    </section>
+
+    <section id="tokens">
+        <h2>PHP Tokens</h2>
+        <p>
+            In PHP, tokens are the smallest building blocks in a script. PHP tokens include keywords, identifiers (variable names), constants, strings, operators, and symbols. Here’s a quick overview of common tokens:
+        </p>
+        <ul>
+            <li><strong>Keywords:</strong> Reserved words that have special meaning, like if, else, echo, etc.</li>
+            <li><strong>Identifiers:</strong> Names given to variables, functions, and classes.</li>
+            <li><strong>Constants:</strong> Defined values that don’t change during execution.</li>
+            <li><strong>Operators:</strong> Symbols used to perform actions, like +, -, *, /.</li>
+        </ul>
+        <pre>
+&lt;?php
+    // Example of keywords, identifiers, and operators
+    $x = 10; // $x is an identifier, = is an operator, 10 is a constant
+    echo $x; // echo is a keyword
+?&gt;
+        </pre>
+    </section>
+
+    <section id="variables">
+        <h2>Variables in PHP</h2>
+        <p>
+            Variables are used to store data in PHP and are prefixed with a dollar sign ($). Variable names must start with a letter or underscore, followed by letters, numbers, or underscores. PHP is loosely typed, so variables can change types dynamically based on the value assigned.
+        </p>
+        <pre>
+&lt;?php
+    $name = "John Doe"; // String variable
+    $age = 25; // Integer variable
+    $is_student = true; // Boolean variable
+?&gt;
+        </pre>
+    </section>
+
+    <section id="variable-scope">
+        <h2>Variable Scope in PHP</h2>
+        <p>
+            Variable scope defines where a variable can be accessed in a script. PHP has three main scopes:
+        </p>
+        <ul>
+            <li><strong>Local Scope:</strong> Variables declared within a function and accessible only within that function.</li>
+            <li><strong>Global Scope:</strong> Variables declared outside of functions and accessible globally using the global keyword.</li>
+            <li><strong>Static Scope:</strong> Variables that retain their value between function calls using the static keyword.</li>
+        </ul>
+        <pre>
+&lt;?php
+    $x = 10; // Global variable
+
+    function test() {
+        global $x; // Access global variable
+        static $y = 0; // Static variable
+        $y++;
+        echo $x + $y;
+    }
+?&gt;
+        </pre>
+    </section>
+
+    <section id="constants">
+        <h2>Constants in PHP</h2>
+        <p>
+            Constants are like variables but once defined, their values cannot change. Constants are defined using the define() function and are usually written in uppercase letters by convention.
+        </p>
+        <pre>
+&lt;?php
+    define("SITE_NAME", "My Website");
+    echo SITE_NAME; // Outputs: My Website
+?&gt;
+        </pre>
+    </section>
+
+    <section id="data-types">
+        <h2>Data Types in PHP</h2>
+        <p>
+            PHP supports several data types, including:
+        </p>
+        <ul>
+            <li><strong>String:</strong> A sequence of characters.</li>
+            <li><strong>Integer:</strong> Whole numbers.</li>
+            <li><strong>Float:</strong> Numbers with decimal points.</li>
+            <li><strong>Boolean:</strong> True or false values.</li>
+            <li><strong>Array:</strong> A collection of values.</li>
+            <li><strong>Object:</strong> An instance of a class.</li>
+            <li><strong>NULL:</strong> A variable with no value.</li>
+        </ul>
+    </section>
+
+    <section id="operators">
+        <h2>Operators in PHP</h2>
+        <p>
+            PHP provides various operators for performing calculations and operations on variables and values. Common types of operators include:
+        </p>
+        <ul>
+            <li><strong>Arithmetic Operators:</strong> +, -, *, /, %.</li>
+            <li><strong>Assignment Operators:</strong> =, +=, -=, *=, /=, %=.</li>
+            <li><strong>Comparison Operators:</strong> ==, !=, &gt;, &lt;, &gt;=, &lt;=.</li>
+            <li><strong>Logical Operators:</strong> &&, ||, !.</li>
+        </ul>
+        <pre>
+&lt;?php
+    $a = 10;
+    $b = 20;
+    echo $a + $b; // Outputs: 30
+    echo ($a &lt; $b) ? "a is less than b" : "a is greater than or equal to b";
+?&gt;
+        </pre>
+    </section>
+
+    <section id="expressions">
+        <h2>Expressions in PHP</h2>
+        <p>
+            An expression in PHP is any valid combination of variables, constants, operators, and function calls that returns a value. Expressions are often used in control structures and assignments.
+        </p>
+        <pre>
+&lt;?php
+    $result = (5 * 2) + 3; // Expression that calculates a value
+    echo $result; // Outputs: 13
+?&gt;
+        </pre>
+    </section>
+
+    <section id="comments">
+        <h2>Comments in PHP</h2>
+        <p>
+            Comments are notes for developers and are ignored by the PHP interpreter. PHP supports single-line (// or #) and multi-line (/* ... */) comments.
+        </p>
+        <pre>
+&lt;?php
+    // This is a single-line comment
+    # This is also a single-line comment
+    /* 
+       This is a multi-line comment
+    */
+?&gt;
+        </pre>
+    </section>
+
+    <section id="echo-print">
+        <h2>Echo and Print Statements</h2>
+        <p>
+            echo and print are two ways to output text in PHP. echo can take multiple arguments, while print can take only one.
+        </p>
+        <pre>
+&lt;?php
+    echo "Hello, World!"; // Outputs: Hello, World!
+    print "Hello, PHP!"; // Outputs: Hello, PHP!
+?&gt;
+        </pre>
+    </section>
+
+    <section id="control-structures">
+        <h2>Control Structures in PHP</h2>
+        <p>
+            Control structures allow you to control the flow of a script. PHP provides branching statements like if-else, switch, and looping statements like while, do-while, and for.
+        </p>
+
+        <h3>If-Else Statement</h3>
+        <pre>
+&lt;?php
+    $num = 10;
+    if ($num &gt; 0) {
+        echo "Positive";
+    } else {
+        echo "Negative";
+    }
+?&gt;
+        </pre>
+
+        <h3>Switch Statement</h3>
+        <pre>
+&lt;?php
+    $day = "Monday";
+    switch ($day) {
+        case "Monday":
+            echo "It's Monday!";
+            break;
+        default:
+            echo "Not Monday";
+            break;
+    }
+?&gt;
+        </pre>
+
+        <h3>For Loop</h3>
+        <pre>
+&lt;?php
+    for ($i = 1; $i &lt;= 5; $i++) {
+        echo "Number: " . $i . "&lt;br&gt;";
+    }
+?&gt;
+        </pre>
+    </section>
+</body>
+</html>

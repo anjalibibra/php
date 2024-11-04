@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP and Database Integration</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Integrating PHP with Databases</h1>
+    </header>
+
+    <section id="database">
+        <h2>Introduction to Database Integration in PHP</h2>
+        <p>
+            PHP can work with databases to create dynamic and data-driven websites. A database stores data that can be accessed, modified, and managed through PHP. MySQL is one of the most popular databases for use with PHP, thanks to its ease of integration and open-source nature.
+        </p>
+
+        <h3>1. Setting Up a MySQL Database</h3>
+        <p>
+            Before integrating with PHP, you need to set up a MySQL database. This typically includes creating a new database and tables to store data.
+        </p>
+
+        <h4>Example SQL to Create a Database and Table</h4>
+        sql
+        CREATE DATABASE mydatabase;
+
+        USE mydatabase;
+
+        CREATE TABLE users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(50) NOT NULL,
+            email VARCHAR(100) NOT NULL,
+            age INT
+        );
+        
+
+        <h3>2. Connecting PHP to MySQL</h3>
+        <p>
+            PHP provides extensions like MySQLi (MySQL Improved) and PDO (PHP Data Objects) for database integration. PDO is preferred for its flexibility and support for different databases.
+        </p>
+
+        <h4>Example: Connecting with MySQLi</h4>
+        <pre>
+&lt;?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "mydatabase";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?&gt;
+        </pre>
+
+        <h4>Example: Connecting with PDO</h4>
+        <pre>
+&lt;?php
+$dsn = "mysql:host=localhost;dbname=mydatabase";
+$username = "root";
+$password = "";
+
+try {
+    $pdo = new PDO($dsn, $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+?&gt;
+        </pre>
+
+        <h3>3. Inserting Data into a Database</h3>
+        <p>Data can be inserted into a database through PHP using SQL <code>INSERT</code> statements.</p>
+
+        <h4>Example: Insert Data with MySQLi</h4>
+        <pre>
+&lt;?php
+$name = "John Doe";
+$email = "john@example.com";
+$age = 30;
+
+$sql = "INSERT INTO users (name, email, age) VALUES ('$name', '$email', $age)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "&lt;br&gt;" . $conn->error;
+}
+$conn->close();
+?&gt;
+        </pre>
+
+        <h4>Example: Insert Data with PDO</h4>
+        <pre>
+&lt;?php
+$name = "Jane Doe";
+$email = "jane@example.com";
+$age = 25;
+
+$sql = "INSERT INTO users (name, email, age) VALUES (:name, :email, :age)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['name' => $name, 'email' => $email, 'age' => $age]);
+
+echo "New record created successfully";
+?&gt;
+        </pre>
+
+        <h3>4. Retrieving Data from a Database</h3>
+        <p>Data can be retrieved using SQL <code>SELECT</code> statements. You can fetch data row by row or as a complete dataset.</p>
+
+        <h4>Example: Retrieve Data with MySQLi</h4>
+        <pre>
+&lt;?php
+$sql = "SELECT id, name, email FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Email: " . $row["email"] . "&lt;br&gt;";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?&gt;
+        </pre>
+
+        <h4>Example: Retrieve Data with PDO</h4>
+        <pre>
+&lt;?php
+$sql = "SELECT id, name, email FROM users";
+$stmt = $pdo->query($sql);
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Email: " . $row["email"] . "&lt;br&gt;";
+}
+?&gt;
+        </pre>
+
+        <h3>5. Updating Data in a Database</h3>
+        <p>Updating data involves using SQL <code>UPDATE</code> statements to modify existing records.</p>
+
+        <h4>Example: Update Data with MySQLi</h4>
+        <pre>
+&lt;?php
+$sql = "UPDATE users SET email='john.doe@example.com' WHERE name='John Doe'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+$conn->close();
+?&gt;
+        </pre>
+
+        <h4>Example: Update Data with PDO</h4>
+        <pre>
+&lt;?php
+$sql = "UPDATE users SET email=:email WHERE name=:name";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['email' => 'jane.doe@example.com', 'name' => 'Jane Doe']);
+
+echo "Record updated successfully";
+?&gt;
+        </pre>
+
+        <h3>6. Deleting Data from a Database</h3>
+        <p>Deleting data is done with SQL <code>DELETE</code> statements, used to remove records from a table.</p>
+
+        <h4>Example: Delete Data with MySQLi</h4>
+        <pre>
+&lt;?php
+$sql = "DELETE FROM users WHERE name='John Doe'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+$conn->close();
+?&gt;
+        </pre>
+
+        <h4>Example: Delete Data with PDO</h4>
+        <pre>
+&lt;?php
+$sql = "DELETE FROM users WHERE name=:name";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['name' => 'Jane Doe']);
+
+echo "Record deleted successfully";
+?&gt;
+        </pre>
+
+        <h3>7. Preventing SQL Injection</h3>
+        <p>To secure against SQL injection, always use prepared statements. This ensures that user input is properly escaped, preventing injection attacks.</p>
+
+        <h4>Example of Secure Prepared Statement with PDO</h4>
+        <pre>
+&lt;?php
+$sql = "SELECT * FROM users WHERE email = :email";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['email' => $userInputEmail]);
+
+$user = $stmt->fetch();
+if ($user) {
+    echo "User found: " . $user['name'];
+} else {
+    echo "No user found.";
+}
+?&gt;
+        </pre>
+
+        <h3>8. Closing the Database Connection</h3>
+        <p>For MySQLi, close the connection explicitly. With PDO, the connection closes automatically when the script ends, but you can set the PDO object to <code>null</code> to ensure immediate closure.</p>
+
+        <h4>MySQLi Close Connection</h4>
+        <pre>
+&lt;?php
+$conn->close();
+?&gt;
+        </pre>
+
+        <h4>PDO Close Connection</h4>
+        <pre>
+&lt;?php
+$pdo = null;
+?&gt;
+        </pre>
+    </section>
+</body>
+</html>

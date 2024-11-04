@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedding PHP in Web Pages</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Embedding PHP in Web Pages</h1>
+    </header>
+
+    <section id="embedding-php">
+        <h2>Introduction to Embedding PHP in Webpages</h2>
+        <p>
+            PHP is a server-side scripting language that can be embedded within HTML to create dynamic, interactive web pages. By mixing PHP with HTML, you can generate content that adapts to user input, data from databases, or other server-side information.
+        </p>
+
+        <h3>Basic PHP Embedding</h3>
+        <p>
+            PHP code is enclosed within <code>&lt;?php ... ?&gt;</code> tags within an HTML file. Here’s a simple example that outputs "Hello, World!" using PHP within an HTML document:
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+
+&lt;?php
+echo "Hello, World!";
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            In this example, the PHP code executes on the server and outputs "Hello, World!" directly into the HTML content.
+        </p>
+
+        <h3>Embedding Variables in HTML</h3>
+        <p>
+            PHP variables can also be embedded within HTML to make pages more dynamic. Here’s an example that uses a variable to personalize a greeting:
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Personalized Greeting&lt;/h1&gt;
+
+&lt;?php
+$name = "Jane";
+echo "&lt;p&gt;Hello, $name! Welcome to my website.&lt;/p&gt;";
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            Here, the PHP variable <code>$name</code> is inserted into the HTML. This code outputs: "Hello, Jane! Welcome to my website."
+        </p>
+
+        <h3>Using Conditional Statements</h3>
+        <p>
+            PHP allows the use of conditional statements to display different content based on certain conditions. For example:
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Time of Day Greeting&lt;/h1&gt;
+
+&lt;?php
+$hour = date("H");
+
+if ($hour &lt; 12) {
+    echo "&lt;p&gt;Good morning!&lt;/p&gt;";
+} elseif ($hour &lt; 18) {
+    echo "&lt;p&gt;Good afternoon!&lt;/p&gt;";
+} else {
+    echo "&lt;p&gt;Good evening!&lt;/p&gt;";
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            This script uses PHP’s <code>if</code> statement to display a different greeting based on the current hour.
+        </p>
+
+        <h3>Embedding Loops</h3>
+        <p>
+            Loops are another powerful feature of PHP that can be embedded within HTML. Here’s an example that generates a list of numbers:
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Number List&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    echo "&lt;li&gt;Number: $i&lt;/li&gt;";
+}
+?&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            This code outputs a numbered list:
+            <ul>
+                <li>Number: 1</li>
+                <li>Number: 2</li>
+                <li>Number: 3</li>
+                <li>Number: 4</li>
+                <li>Number: 5</li>
+            </ul>
+        </p>
+
+        <h3>Using PHP to Display Data from Arrays</h3>
+        <p>
+            PHP arrays can also be embedded in HTML to create dynamic lists of items. Here’s an example that displays a list of favorite colors:
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;My Favorite Colors&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;?php
+$colors = array("Red", "Blue", "Green", "Pink");
+
+foreach ($colors as $color) {
+    echo "&lt;li&gt;$color&lt;/li&gt;";
+}
+?&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            This code will generate a bulleted list of colors:
+            <ul>
+                <li>Red</li>
+                <li>Blue</li>
+                <li>Green</li>
+                <li>Pink</li>
+            </ul>
+        </p>
+
+        <h3>Embedding PHP with Forms</h3>
+        <p>
+            PHP can process form data, allowing users to submit information that PHP can handle on the server. Here’s a basic example that takes a user’s name and displays a personalized message:
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Enter Your Name&lt;/h1&gt;
+
+&lt;form method="POST"&gt;
+    &lt;label&gt;Name: &lt;/label&gt;
+    &lt;input type="text" name="username"&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+
+&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST["username"]);
+    echo "&lt;p&gt;Hello, $name!&lt;/p&gt;";
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            In this form, after entering a name and submitting, PHP processes the input and outputs a greeting using the submitted name.
+        </p>
+    </section>
+
+  
+</body>
+</html>

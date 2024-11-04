@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintaining User State in PHP</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Maintaining User State in PHP</h1>
+    </header>
+
+    <section id="user-state">
+        <h2>Introduction to Maintaining User State</h2>
+        <p>
+            In web applications, it’s important to maintain user state to keep track of individual users and their interactions with the website. PHP provides two main methods for preserving state across web pages: <strong>cookies</strong> and <strong>sessions</strong>.
+        </p>
+
+        <h3>1. Cookies</h3>
+        <p>
+            A cookie is a small piece of data stored on the user’s computer by the web browser. PHP can use cookies to store user preferences, login information, or other data for a certain period.
+        </p>
+
+        <h4>Setting a Cookie in PHP</h4>
+        php
+        &lt;?php
+        // Set a cookie named "user" with the value "John Doe" that expires in 30 days
+        setcookie("user", "John Doe", time() + (86400 * 30), "/");
+        ?&gt;
+        
+
+        <p>
+            The <code>setcookie()</code> function takes several parameters: the cookie name, value, expiration time, and path. Here, the cookie will expire in 30 days.
+        </p>
+
+        <h4>Accessing a Cookie in PHP</h4>
+        php
+        &lt;?php
+        if(isset($_COOKIE["user"])) {
+            echo "User: " . $_COOKIE["user"];
+        } else {
+            echo "Cookie named 'user' is not set!";
+        }
+        ?&gt;
+        
+
+        <h4>Deleting a Cookie</h4>
+        <p>To delete a cookie, set its expiration time to a past date:</p>
+        php
+        &lt;?php
+        setcookie("user", "", time() - 3600, "/");
+        echo "Cookie 'user' is deleted.";
+        ?&gt;
+        
+
+        <h3>2. Sessions</h3>
+        <p>
+            A session is a way to store information (variables) to be used across multiple pages. Unlike cookies, session data is stored on the server, making it more secure.
+        </p>
+
+        <h4>Starting a Session in PHP</h4>
+        <p>To use sessions in PHP, call <code>session_start()</code> at the beginning of your script:</p>
+        php
+        &lt;?php
+        session_start();
+        ?&gt;
+        
+
+        <h4>Storing and Accessing Session Variables</h4>
+        php
+        &lt;?php
+        // Start session
+        session_start();
+
+        // Set session variables
+        $_SESSION["username"] = "JohnDoe";
+        $_SESSION["email"] = "john@example.com";
+
+        // Access session variables
+        echo "Username: " . $_SESSION["username"];
+        echo "Email: " . $_SESSION["email"];
+        ?&gt;
+        
+
+        <h4>Deleting a Session Variable</h4>
+        <p>To delete a session variable, use the <code>unset()</code> function:</p>
+        php
+        &lt;?php
+        unset($_SESSION["username"]);
+        ?&gt;
+        
+
+        <h4>Destroying a Session</h4>
+        <p>To completely destroy a session, use <code>session_destroy()</code>. This removes all session data:</p>
+        php
+        &lt;?php
+        session_start();
+        session_destroy();
+        ?&gt;
+        
+
+        <h3>3. Differences Between Cookies and Sessions</h3>
+        <ul>
+            <li><strong>Location:</strong> Cookies are stored on the client-side (user’s browser), whereas session data is stored on the server.</li>
+            <li><strong>Security:</strong> Sessions are generally more secure as the data is not accessible to the user.</li>
+            <li><strong>Storage Limit:</strong> Cookies have size limitations, while sessions can store larger amounts of data on the server.</li>
+        </ul>
+
+        <h3>4. Practical Example: User Login with Session Management</h3>
+        <p>
+            Here’s a simple login example using sessions to maintain the user state.
+        </p>
+
+        <h4>Login Form (login.html)</h4>
+        html
+        &lt;form action="login.php" method="post"&gt;
+            Username: &lt;input type="text" name="username"&gt;&lt;br&gt;
+            Password: &lt;input type="password" name="password"&gt;&lt;br&gt;
+            &lt;input type="submit" value="Login"&gt;
+        &lt;/form&gt;
+        
+
+        <h4>Login Script (login.php)</h4>
+        php
+        &lt;?php
+        session_start();
+
+        // Assuming 'user' is the valid username and 'password' is the valid password
+        if ($_POST["username"] == "user" && $_POST["password"] == "password") {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $_POST["username"];
+            echo "Login successful! Welcome, " . $_SESSION["username"];
+        } else {
+            echo "Invalid username or password.";
+        }
+        ?&gt;
+        
+
+        <h4>Checking Login Status on Another Page (dashboard.php)</h4>
+        php
+        &lt;?php
+        session_start();
+
+        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            echo "Please log in first to see this page.";
+            exit;
+        }
+
+        echo "Welcome to your dashboard, " . $_SESSION["username"];
+        ?&gt;
+        
+
+        <h3>5. Passing Session IDs</h3>
+        <p>
+            PHP automatically handles session IDs via cookies, but you can pass them manually through URLs if needed. Ensure this is handled securely, as it can expose session data to risks.
+        </p>
+
+        <h4>Manually Passing Session IDs</h4>
+        php
+        &lt;?php
+        session_start();
+        echo "Your session ID is: " . session_id();
+        ?&gt;
+        
+
+        <h3>6. Summary</h3>
+        <p>
+            Maintaining user state is essential for creating dynamic web applications. Cookies and sessions each have specific use cases, advantages, and limitations. Use cookies for lightweight, client-side data storage and sessions for secure, server-side state management.
+        </p>
+    </section>
+</body>
+</html>

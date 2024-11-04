@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Structures in PHP</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your pink-themed CSS stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Control Structures in PHP</h1>
+    </header>
+
+    <section id="control-structures">
+        <h2>Understanding Control Structures</h2>
+        <p>
+            Control structures in PHP are essential for directing the flow of execution in a script. They allow developers to execute certain blocks of code based on specific conditions or to repeat code blocks multiple times.
+        </p>
+
+        <h3>1. Conditional Statements</h3>
+        <p>
+            Conditional statements execute different code based on conditions. The primary types of conditional statements in PHP include:
+        </p>
+
+        <h4>If Statement</h4>
+        <p>
+            The <code>if</code> statement evaluates a condition and executes the associated block of code if the condition is true.
+        </p>
+        <pre>
+&lt;?php
+$temperature = 30;
+
+if ($temperature > 25) {
+    echo "It's a hot day!";
+}
+?&gt;
+        </pre>
+
+        <h4>If-Else Statement</h4>
+        <p>
+            The <code>if-else</code> statement allows for an alternative block of code to be executed if the condition is false.
+        </p>
+        <pre>
+&lt;?php
+$temperature = 20;
+
+if ($temperature > 25) {
+    echo "It's a hot day!";
+} else {
+    echo "It's a pleasant day!";
+}
+?&gt;
+        </pre>
+
+        <h4>Elseif Statement</h4>
+        <p>
+            The <code>elseif</code> statement provides additional conditions to evaluate.
+        </p>
+        <pre>
+&lt;?php
+$temperature = 15;
+
+if ($temperature > 25) {
+    echo "It's a hot day!";
+} elseif ($temperature > 15) {
+    echo "It's a warm day!";
+} else {
+    echo "It's a cold day!";
+}
+?&gt;
+        </pre>
+
+        <h4>Switch Statement</h4>
+        <p>
+            The <code>switch</code> statement allows a variable to be tested against a list of values. It's a cleaner alternative to multiple <code>if</code> statements.
+        </p>
+        <pre>
+&lt;?php
+$day = "Monday";
+
+switch ($day) {
+    case "Monday":
+        echo "Start of the work week.";
+        break;
+    case "Friday":
+        echo "End of the work week.";
+        break;
+    case "Saturday":
+    case "Sunday":
+        echo "It's the weekend!";
+        break;
+    default:
+        echo "Midweek days.";
+}
+?&gt;
+        </pre>
+
+        <h3>2. Looping Statements</h3>
+        <p>
+            Looping statements execute a block of code multiple times based on a condition. Common types of loops in PHP include:
+        </p>
+
+        <h4>While Loop</h4>
+        <p>
+            The <code>while</code> loop continues to execute as long as a specified condition is true.
+        </p>
+        <pre>
+&lt;?php
+$count = 1;
+
+while ($count &lt;= 5) {
+    echo "Count is: $count&lt;br&gt;";
+    $count++;
+}
+?&gt;
+        </pre>
+
+        <h4>Do-While Loop</h4>
+        <p>
+            The <code>do-while</code> loop executes the block of code once before checking the condition. This guarantees at least one execution.
+        </p>
+        <pre>
+&lt;?php
+$count = 1;
+
+do {
+    echo "Count is: $count&lt;br&gt;";
+    $count++;
+} while ($count &lt;= 5);
+?&gt;
+        </pre>
+
+        <h4>For Loop</h4>
+        <p>
+            The <code>for</code> loop is used when the number of iterations is known. It consists of three parts: initialization, condition, and increment.
+        </p>
+        <pre>
+&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    echo "Count is: $i&lt;br&gt;";
+}
+?&gt;
+        </pre>
+
+        <h4>Foreach Loop</h4>
+        <p>
+            The <code>foreach</code> loop is specifically designed for iterating over arrays.
+        </p>
+        <pre>
+&lt;?php
+$colors = array("Red", "Green", "Blue");
+
+foreach ($colors as $color) {
+    echo "Color: $color&lt;br&gt;";
+}
+?&gt;
+        </pre>
+
+        <h3>3. Breaking and Continuing Loops</h3>
+        <p>
+            You can control loop execution using <code>break</code> and <code>continue</code> statements.
+        </p>
+
+        <h4>Break Statement</h4>
+        <p>
+            The <code>break</code> statement exits the loop immediately.
+        </p>
+        <pre>
+&lt;?php
+for ($i = 1; $i &lt;= 10; $i++) {
+    if ($i == 5) {
+        break; // Exit the loop when $i is 5
+    }
+    echo "Count: $i&lt;br&gt;";
+}
+?&gt;
+        </pre>
+
+        <h4>Continue Statement</h4>
+        <p>
+            The <code>continue</code> statement skips the current iteration and continues with the next one.
+        </p>
+        <pre>
+&lt;?php
+for ($i = 1; $i &lt;= 10; $i++) {
+    if ($i % 2 == 0) {
+        continue; // Skip even numbers
+    }
+    echo "Odd Count: $i&lt;br&gt;";
+}
+?&gt;
+        </pre>
+
+        <h3>Conclusion</h3>
+        <p>
+            Understanding control structures is crucial for building dynamic applications in PHP. They provide the necessary tools for making decisions and controlling the flow of your code effectively.
+        </p>
+    </section>
+
+   
+</body>
+</html>
