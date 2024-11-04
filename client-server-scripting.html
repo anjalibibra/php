@@ -121,35 +121,7 @@
             In modern web applications, client-side and server-side scripting often work together to deliver a seamless, dynamic experience. The client-side script handles immediate interactions and UI changes, while server-side scripts manage data-intensive tasks and security. AJAX is a popular technique for integrating client-side JavaScript with server-side processing, enabling dynamic content updates without reloading the page.
         </p>
 
-        <h3>Code Example: AJAX in Client-Side and Server-Side Integration</h3>
-        <pre>
-&lt;!-- Client-side: HTML and JavaScript --&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;h2&gt;AJAX Example&lt;/h2&gt;
-        &lt;button onclick="fetchData()"&gt;Fetch Data from Server&lt;/button&gt;
-        &lt;div id="result"&gt;&lt;/div&gt;
-        
-        &lt;script&gt;
-            function fetchData() {
-                const xhr = new XMLHttpRequest();
-                xhr.open("GET", "server.php", true);
-                xhr.onload = function() {
-                    document.getElementById("result").innerHTML = this.responseText;
-                };
-                xhr.send();
-            }
-        &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-
-&lt;!-- Server-side: PHP file (server.php) --&gt;
-&lt;?php
-    echo "Data fetched from the server using AJAX!";
-?&gt;
-        </pre>
-    </section>
-
+      
     <section>
         <h2>Advantages and Disadvantages</h2>
 
